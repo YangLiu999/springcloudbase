@@ -1,0 +1,49 @@
+server:
+  port: 7071
+spring:
+  application:
+    name: consumer-student
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:6061/eureka
+#修改轮询策略
+provider-student:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+#配置feign超时时间
+#ribbon:
+#  ReadTimeout: 2100 #建立连接获取资源时间
+#  ConnectTimeOut: 500 #建立网络通信的时间
+
+#配置feign的日志打印
+feign:
+  client:
+    config:
+      provider-student:
+        loggerLevel: FULL
+#feign调用服务启用hystrix降级
+  hystrix:
+    enabled: true
+
+#配置springboot对应的日志级别
+logging:
+  level:
+    com.woniuxy.springcloud.consumer.student.feignclient.StudentFeignClient: debug
+
+##配置降级的触发时间：默认是1秒
+#hystrix:
+#  commond:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 2500
+##配置feign超时时间
+#ribbon:
+#  ReadTimeout: 2100 #建立连接获取资源时间
+#  ConnectTimeOut: 500 #建立网络通信的时间
+

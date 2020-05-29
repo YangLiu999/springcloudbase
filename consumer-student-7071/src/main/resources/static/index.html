@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $.get(
+                "http://localhost:8081/student/",
+                null,
+                function (data) {
+                    console.log(data);
+                }
+            )
+        });
+    </script>
+</head>
+<body>
+aaaa
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/auth/js/jquery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var token = window.localStorage.getItem("token");
+            console.log(token);
+
+            $("#deltoken").click(function () {
+                window.localStorage.removeItem("token");
+                console.log(token);
+            })
+            
+            //获取初始学生数据
+            $.ajax({
+                type:"get",
+                url:"/provider-student/student/",
+                dataType:"json",
+                //请求头中带有token
+                headers:{"token":token},
+                success:function (data) {
+                    if (data.stateCode==401){
+                        //未登录
+                        window.location.href="/auth/login.html";
+                    }else{
+                        console.log(data.data);
+                    }
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+index<br>
+<a href="/auth/login.html">login</a><br>
+<input type="button" value="删除token" id="deltoken" />
+</body>
+</html>

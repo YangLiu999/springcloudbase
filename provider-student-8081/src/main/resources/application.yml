@@ -1,0 +1,28 @@
+server:
+  port: ${port:8081}
+#微服务程序，注册到注册中心,对外公布的名字
+Spring:
+  application:
+    name: provider-student
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://118.190.161.114:3306/springdb?serverTimezone=Asia/Shanghai
+    username:  root
+    password: 123456
+
+#配置包扫描和实体别名
+mybatis:
+  mapper-locations: classpath:/mybatis/mapper/*Mapper.xml
+  type-aliases-package: com.woniuxy.springcloud.common.entity
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${defaultZone:http://localhost:6061/eureka}
+#    instance:
+#      #客户端发送心跳包的时间间隔
+#      lease-renewal-interval-in-seconds: 1
+#      #客户端连续多少秒未发送心跳包，服务器认为已经下线
+#      lease-expiration-duration-in-seconds: 2

@@ -1,0 +1,34 @@
+server:
+  port: 9091
+
+#zuul:
+#  routes:
+#    provider-student:
+#      path: /student/**
+#      url: http://localhost:8081/
+#    consumer-student:
+#      path: /consumerstudent/**
+#      url: http://localhost:7071/
+spring:
+  application:
+    name: zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6061/eureka
+
+#zuul:
+#  routes:
+#    provider-student:
+#      path: /student/**
+#      serverId: provider-student
+#    consumer-student:
+#      path: /consumerstudent/**
+#      url: consumer-student
+#简化路由配置
+zuul:
+  routes:
+    provider-student: /student/**
+    consumer-student: /consumerstudent/**
+
